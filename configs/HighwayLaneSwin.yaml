@@ -1,0 +1,71 @@
+Model:
+    name: "InSPyReNet_SwinB"
+    channels: 64
+    pretrained: True
+
+Train:
+    Dataset:
+        type: "RGB_Dataset"
+        root: "data/highway"
+        transform_list:
+            resize: 
+                size: [352, 576]
+            random_scale_crop:
+                range: [0.75, 1.25]
+            random_flip:
+                lr: True
+                ud: False
+            random_rotate:
+                range: [-10, 10]
+            random_image_enhance:
+                methods: ['contrast', 'sharpness', 'brightness']
+            tonumpy: NULL
+            normalize: 
+                mean: [0.485, 0.456, 0.406]
+                std: [0.229, 0.224, 0.225]
+            totensor: NULL
+    Dataloader:
+        batch_size: 8
+        shuffle: True
+        num_workers: 8
+        pin_memory: False
+    Optimizer:
+        type: "Adam"
+        lr: 1.0e-04
+        weight_decay: 0.0
+        mixed_precision: False
+    Scheduler:
+        type: "PolyLr"
+        epoch: 240
+        gamma: 0.9
+        minimum_lr: 1.0e-07
+        warmup_iteration: 1000
+    Checkpoint:
+        checkpoint_epoch: 20
+        checkpoint_dir: "snapshots/HighwayLaneSwin"
+    
+Test:
+    Dataset:
+        type: "RGB_Dataset"
+        root: "data"
+        testsets: ['highway_test']
+        transform_list:
+            resize: 
+                size: [352, 576]
+            tonumpy: NULL
+            normalize: 
+                mean: [0.485, 0.456, 0.406]
+                std: [0.229, 0.224, 0.225]
+            totensor: NULL
+    Dataloader:
+        num_workers: 8
+        pin_memory: True
+    Checkpoint:
+        checkpoint_dir: "snapshots/HighwayLaneSwin"
+
+Eval:
+    gt_root: "data"
+    pred_root: "snapshots/HighwayLaneSwin"
+    result_path: "results"
+    datasets: ['highway_test']
+    metrics: ['Sm', 'mae', 'Em', 'maxF', 'avgF', 'wFm', 'IoUmaxF', 'maxIoU', 'meanIoU']
