@@ -1,11 +1,11 @@
 # Lane Segmentation
 
-This project is built based on [InSPyReNet](https://github.com/plemeri/InSPyReNet)
+:rocket: This project is built based on [InSPyReNet](https://github.com/plemeri/InSPyReNet). Please refer to the original repository for training and other details.
 
 ![Teaser](./figures/Teaser.gif)
 
 ## 1. Create environment
-  + Create conda environment with following command `conda create -y -n lane python=3.8`
+  + Create conda environment with following command `conda create -y -n lane python`
   + Activate environment with following command `conda activate lane`
   + Install requirements with following command `pip install -r requirements.txt`
 

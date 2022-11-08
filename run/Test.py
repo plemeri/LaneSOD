@@ -18,13 +18,6 @@ from utils.utils import *
 from utils.dataloader import *
 from lib import *
 
-def _args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=str, default='configs/InSPyReNet_SwinB.yaml')
-    parser.add_argument('--verbose', action='store_true', default=False)
-    return parser.parse_args()
-
-
 def test(opt, args):
     model = eval(opt.Model.name)(channels=opt.Model.channels,
                                 pretrained=opt.Model.pretrained)
@@ -74,6 +67,6 @@ def test(opt, args):
 
 
 if __name__ == "__main__":
-    args = _args()
+    args = parse_args()
     opt = load_config(args.config)
     test(opt, args)

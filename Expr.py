@@ -3,19 +3,8 @@ import argparse
 from utils.utils import *
 from run import *
 
-
-def _args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=str,
-                        default='configs/InSPyReNet_SwinB.yaml')
-    parser.add_argument('--local_rank', type=int, default=-1)
-    parser.add_argument('--verbose', action='store_true', default=False)
-    parser.add_argument('--debug', action='store_true', default=False)
-    return parser.parse_args()
-
-
 if __name__ == "__main__":
-    args = _args()
+    args = parse_args()
     opt = load_config(args.config)
     
     train(opt, args)

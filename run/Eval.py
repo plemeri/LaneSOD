@@ -17,14 +17,6 @@ from utils.utils import *
 
 BETA = 1.0
 
-
-def _args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=str, default='configs/MINet.yaml')
-    parser.add_argument('--verbose', action='store_true', default=False)
-    return parser.parse_args()
-
-
 def evaluate(opt, args):
     if os.path.isdir(opt.Eval.result_path) is False:
         os.makedirs(opt.Eval.result_path)
@@ -150,6 +142,6 @@ def evaluate(opt, args):
 
 
 if __name__ == "__main__":
-    args = _args()
+    args = parse_args()
     opt = load_config(args.config)
     evaluate(opt, args)
