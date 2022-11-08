@@ -22,7 +22,7 @@ from utils.custom_transforms import *
 
 def _args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=str, default='configs/RIUNet.yaml')
+    parser.add_argument('--config', type=str, default='configs/HighwayLane.yaml')
     parser.add_argument('--source', type=str)
     parser.add_argument('--type', type=str,
                         choices=['rgba', 'map'], default='map')

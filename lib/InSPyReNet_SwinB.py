@@ -26,9 +26,9 @@ class InSPyReNet_SwinB(nn.Module):
 
         self.decoder = PAA_d(channels)
 
-        self.attention =  ASCA(channels    , channels, lmap_in=True)
-        self.attention1 = ASCA(channels * 2, channels, lmap_in=True)
-        self.attention2 = ASCA(channels * 2, channels)
+        self.attention =  SICA(channels    , channels, lmap_in=True)
+        self.attention1 = SICA(channels * 2, channels, lmap_in=True)
+        self.attention2 = SICA(channels * 2, channels)
 
         # self.loss_fn = lambda x, y: weighted_tversky_bce_loss(x, y, alpha=0.2, beta=0.8, gamma=2)
         self.loss_fn = bce_loss

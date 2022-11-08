@@ -51,9 +51,9 @@ class simple_attention(nn.Module):
 
         return x, out
 
-class ASCA(nn.Module):
+class SICA(nn.Module):
     def __init__(self, in_channel, channel, lmap_in=False):
-        super(ASCA, self).__init__()
+        super(SICA, self).__init__()
         self.in_channel = in_channel
         self.channel = channel
         self.lmap_in = lmap_in
@@ -135,9 +135,9 @@ class ASCA(nn.Module):
 
         return x, out
 
-class ASCA_DWT(nn.Module):
+class SICA_DWT(nn.Module):
     def __init__(self, in_channel, channel, lmap_in=False):
-        super(ASCA_DWT, self).__init__()
+        super(SICA_DWT, self).__init__()
         self.in_channel = in_channel
         self.channel = channel
         self.lmap_in = lmap_in

@@ -8,7 +8,7 @@
   + Install requirements with following command `pip install -r requirements.txt`
 
 ## 2. Preparation
-  + Download checkpoint from [Link](https://drive.google.com/file/d/1DONSeQ43PwAnW-Eehpvo5UaRAJP4mhZy/view?usp=sharing)
+  + Download checkpoint from [Link](https://postechackr-my.sharepoint.com/:u:/g/personal/taehoon1018_postech_ac_kr/EaKumdLe9iBHv1OWkjisoZ4B9ppCSvs0yZ6pxllgnGorfQ?e=9dp81y&download=1)
   + Move file as follows `./snapshots/HighwayLane/latest.pth`. Create folder if needed.
 
 ## 3. Inference
