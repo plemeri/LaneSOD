@@ -1,6 +1,6 @@
 # Lane Segmentation
 
-:rocket: This project is built based on [InSPyReNet](https://github.com/plemeri/InSPyReNet). Please refer to the original repository for training and other details.
+:rocket: This project is built based on [InSPyReNet (ACCV 2022)](https://github.com/plemeri/InSPyReNet). Please refer to the original repository for training and other details.
 
 ![Teaser](./figures/Teaser.gif)
 
