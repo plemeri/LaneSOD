@@ -24,6 +24,8 @@ def _args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', type=str, default='configs/HighwayLane.yaml')
     parser.add_argument('--source', type=str)
+    parser.add_argument('--dest', type=str, default=None)
+    parser.add_argument('--mask', type=str, default='data/mask.png')
     parser.add_argument('--type', type=str,
                         choices=['rgba', 'map'], default='map')
     parser.add_argument('--verbose', action='store_true', default=False)
@@ -40,18 +42,28 @@ def inference(opt, args):
 
     transform = eval(opt.Test.Dataset.type).get_transform(
         opt.Test.Dataset.transform_list)
+    
+    if args.mask is not None:
+        mask = cv2.imread(args.mask, cv2.IMREAD_GRAYSCALE)
+    else:
+        mask = None
 
     if os.path.isdir(args.source):
         source_dir = args.source
         source_list = os.listdir(args.source)
-
         save_dir = os.path.join('results', args.source.split(os.sep)[-1])
 
     elif os.path.isfile(args.source):
         source_dir = os.path.split(args.source)[0]
         source_list = [os.path.split(args.source)[1]]
-
         save_dir = 'results'
+    
+    if args.dest is not None:
+        save_dir = args.dest
+        
+    if save_dir is not None:
+        os.makedirs(save_dir, exist_ok=True)
+        
     else:
         return
 
@@ -81,6 +93,9 @@ def inference(opt, args):
         out['pred'] = (out['pred'] - out['pred'].min()) / \
             (out['pred'].max() - out['pred'].min() + 1e-8)
         out['pred'] = (out['pred'] * 255).astype(np.uint8)
+        
+        if mask is not None:
+            out['pred'] = out['pred'] * (mask != 0)
 
         if args.type == 'map':
             img = out['pred']
